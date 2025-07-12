@@ -1,26 +1,23 @@
 #  SalaryScope: Predicting Data Science Compensation with Machine Learning
 
 ## Goal
-To analyze data science salary trends and predict salaries using a machine learning model: Random Forest Regressor, providing insights for job seekers and employers based on role, experience, company size, and working conditions.
+Through exploratory data analysis and machine learning (Logistic Regression, Random Forest, SVM, XGBoost), this project predicts house sale status. It delivers insights from key property features, benefiting real estate professionals and house seekers
 
 ---
 
 ## Background
-The global demand for data professionals continues to surge as industries embrace AI, analytics, and digital transformation. Salary benchmarks play a crucial role in talent acquisition, retention, and strategic career planning.
+Understanding the dynamics of the residential real estate market is crucial for investors, agents, and prospective homeowners alike. Predicting whether a property will be sold, and what factors influence that outcome, can provide significant strategic advantages in a competitive market.
 
-This project uses a real-world dataset with over 59,000 entries (2020–2025), detailing job titles, experience levels, company size, employment type, and salary data. The aim is to uncover key salary trends and build a machine learning model to predict salaries accurately.
+This project utilizes a real-world dataset covering various USA house listings,specifially in California, detailing essential property features, listing specifics, and crucially, their eventual sale status. The primary objective is to leverage this data to build robust machine learning models capable of predicting property sales outcomes accurately.
 
-The dataset was thoroughly cleaned, transformed, and engineered. This includes removing outliers, one-hot encoding categorical variables, frequency encoding job titles, changing data types, and creating new features like `is_fully_remote` and `is_domestic`.
+A core challenge encountered was addressing critical data integrity issues, specifically geographic inconsistencies where listed cities did not always match their corresponding states. Extensive data preprocessing, meticulous feature engineering (such as deriving price ratios), and comprehensive model tuning were undertaken to overcome these obstacles and enhance the dataset's predictive signal.
 
 ---
 
-## Insights Summary
+<!-- ## Insights Summary
 
-### Salary by Experience
-- Experience level has a strong impact on salary: Globally, Experts average $204k, while Entry-level roles earn around $104k. 
-- In the US, Mid-level and Senior roles earn slightly more than the global average, indicating a competitive job market.
-- UK (GB) stands out: Mid-level roles earn the highest average ($185k), even more than Experts, possibly reflecting market shortages or reporting bias.
-- Entry-level salaries are consistently the lowest across all regions, but vary from ~$97k in the UK to ~$106k in the US.
+### Newer Homes Don’t Always Mean Higher Sale Probability
+Contrary to expectations, properties built after 2010 do not always show a higher likelihood of being sold. Sale outcomes appear influenced more by other factors like size, location, and market exposure than age alone.
 
 ### Remote Work Impact
 - Top-paying roles exist in both fully remote and fully on-site settings, but the highest salary overall ($450,000) is for an on-site position: Research Team Lead.
@@ -109,7 +106,7 @@ While the model doesn’t explain all salary variation, it successfully captures
 - Python, Pandas, NumPy
 - Scikit-learn
 - Matplotlib, Seaborn
-- Jupyter / Kaggle Notebook
+- Jupyter / Kaggle Notebook -->
 
 ---
 
