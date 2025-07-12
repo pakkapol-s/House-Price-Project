@@ -1,4 +1,4 @@
-#  SalaryScope: Predicting Data Science Compensation with Machine Learning
+# "Built to Sell: ML for House Status
 
 ## Goal
 Through exploratory data analysis and machine learning (Logistic Regression, Random Forest, SVM, XGBoost), this project predicts house sale status. It delivers insights from key property features, benefiting real estate professionals and house seekers
