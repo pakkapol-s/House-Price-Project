@@ -55,10 +55,10 @@ The raw dataset underwent comprehensive preprocessing to ensure data quality, co
 
 The goal here was to clean and transform raw property listing data for EDA and insight generation, the following transformations were applied:
 
-- Column Renaming: Long column names were standardized (e.g., "Area (Sqft)" → "area_sqft", "Lot Size" → "lot_size").
-- Data Type Conversion: Key fields like "City", "State", "Property Type" were explicitly cast as strings for clarity and consistency.
+- Column Renaming: Long column names were standardized (e.g., `Area (Sqft)` → `area_sqft`, `Lot Size` → `lot_size`).
+- Data Type Conversion: Key fields like `City`, `State`, `Property Type` were explicitly cast as strings for clarity and consistency.
 - Numeric Extraction: Bedroom, bathroom, area, and lot size values were cleaned by stripping non-numeric characters (e.g., “3 Beds” → 3).
-- Currency Conversion: The "Price" column was stripped of $ and , symbols and converted to numeric values (float).
+- Currency Conversion: The `Price` column was stripped of $ and , symbols and converted to numeric values (float), and renamed to `price_in_usd`.
 - Address Breakdown: Extracted the street component from the full address for added granularity in location analysis.
 - Geographic Correction: Fixed mismatched city–state pairs (e.g., San Diego mistakenly tagged as TX instead of CA).
 - Dropped Redundant Columns: Removed unused original columns after transformation to keep the dataset lean and tidy.
@@ -68,13 +68,13 @@ The goal here was to clean and transform raw property listing data for EDA and i
 Building upon the general cleaning, additional steps were performed to prepare the data specifically for training machine learning models to predict `is_sold` status:
     
 * **Category Encoding**:
-    * City, Property_type, and Status converted to categorical data types.
+    * Columns like `City`, `Property_type`, and `Status` converted to categorical data types.
     * One-Hot Encoding (OHE) applied to selected categorical features, with drop='first' to avoid multicollinearity.
 * **Feature Engineering**:
     * Created log_price using a log1p transformation for better numeric stability.
     * Derived new binary target variable is_sold from the original "Status" field.
 * **Column Reduction**:
-    * Removed unnecessary columns for modeling (e.g., URLs, Agent Names, raw Price) to avoid data leakage and reduce noise.
+    * Removed unnecessary columns for modeling (e.g., `URLs`, `Agent Names`, raw `Price`) to avoid data leakage and reduce noise.
 * **Data Cleaning**:
     * Applied consistent formatting across numerical features.
     * Handled geographic inconsistencies similarly to the EDA version.
