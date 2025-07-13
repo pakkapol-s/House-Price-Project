@@ -14,64 +14,73 @@ A core challenge encountered was addressing critical data integrity issues, spec
 
 ---
 
-<!-- ## Insights Summary
+## Insights Summary
 
-### Newer Homes Don’t Always Mean Higher Sale Probability
-Contrary to expectations, properties built after 2010 do not always show a higher likelihood of being sold. Sale outcomes appear influenced more by other factors like size, location, and market exposure than age alone.
+### Location Influence
+- Sacramento and Los Angeles had the highest share of sold listings, suggesting higher demand in these markets compared to cities like Fresno or San Francisco.
+- San Francisco underperforms in average price even though it is often considered a premium market, its average sale price ($788k) is the lowest among the five cities. That may reflect a concentration of lower-value properties sold recently or a cooling trend in that segment of the market.
+- Sacramento is a more liquid market — homes sell more frequently but at slightly lower price points, its average price ($804k) is slightly lower than Fresno, LA, and San Diego.
 
-### Remote Work Impact
-- Top-paying roles exist in both fully remote and fully on-site settings, but the highest salary overall ($450,000) is for an on-site position: Research Team Lead.
-- Leadership and executive roles dominate both categories, but on-site jobs seem to edge out in salary for traditional management titles like Director of Data and Head of Machine Learning.
-- Some roles like Head of AI and Director of Product Management appear in both top 10 lists, showing strong salary consistency regardless of work arrangement.
+### Property Size and Configuration
+- While condos have the lowest average total price (~$768K), they don’t offer the best value per square foot. Single-family homes have the highest price per sqft (~$472), showing they command premium space.
+- Apartments in Fresno ($912K) and single-family homes in San Diego ($865K) rank among the most expensive. On the flip side, condos in Sacramento and San Francisco consistently appear in the lowest price brackets.
+- 2-bedroom homes have the highest median sale price (~$870K), even more than 4- or 6-bedroom properties. This suggests smaller, well-located or luxury properties are in high demand over sheer size.
 
+### Property Age and Market Trends
+- A significant 67% of homes were built before 2000 (2,013 out of 3,000), showing the market leans toward established, possibly renovated properties rather than new developments.
+- Old doesn’t mean cheap — older homes average higher prices ($814K) than newer ones ($803K), suggesting buyers may be paying for land, location, or charm over modern construction.
+- The price difference between old and new homes is most pronounced in single-family homes, where older units cost ~$25K more. This may reflect larger lot sizes or better neighborhoods.
 
-### Geography Matters
-- The U.S. leads in top-tier salaries, with roles like Research Team Lead and Director-level positions earning up to $450,000, noticeably higher than the global and UK equivalents 
-- Globally, salary extremes are wider — roles such as Clinical Data Operator and AI Content Writer earn less than $45,000, while executive-level titles exceed $270,000. 
-- Job title prestige doesn’t always align across countries: roles like Director and AI Engineer appear in lower-paid UK lists, but rank among top earners in the U.S., highlighting regional valuation differences.
+### Underprice Segment Analysis
+- Apartments in San Francisco and San Diego are significantly underpriced, averaging $570K–$633K, far below cities like Fresno. Meanwhile, townhouses in Los Angeles average only $527K, the lowest across all segments, revealing strong bargain potential.
+- With average prices ranging from $557K in Sacramento to $660K in Fresno, condos emerge as one of the most underpriced and accessible property types, especially for entry-level buyers or investors targeting rental yields.
+- Despite being a high-cost city, San Francisco properties (apartments, condos, and single-family homes) appear in the lowest average underpriced listings, indicating market-wide price corrections or opportunity pockets even in premium neighborhoods.
 
-### Job Title Frequency and Pay
-- Data Scientist, Data Engineer, and Data Analyst are the most common roles in the dataset, with over 5,000 entries each, showing strong demand across organizations.
-- Despite their popularity, these roles aren’t the highest-paid. Data Analyst, in particular, ranks last in average pay among the top 10, earning ~$111K, while Data Scientist and Data Engineer trail behind others at ~$160K–155K.
-- Product Manager and Software Engineer balance both decent frequency and high pay, suggesting strong market value for both strategic and technical skill sets.
-
----
-## Recommendations
-- **For Job Seekers**: Don't assume popular roles like Data Analyst or Data Engineer guarantee top pay. Instead, explore high-value niches like Machine Learning Engineer or Research Scientist, which show significantly higher average salaries despite being less common.
-- **For Employers**: Consider offering fully remote options. Your data suggests that 100% remote roles are often linked with higher salaries, potentially signaling companies’ willingness to invest more in global talent for flexible arrangements.
-- **For Global Talent**: Be strategic about geographic positioning. Jobs in the US consistently offer the highest salaries, followed by the UK. If relocation or remote contracting is an option, it could lead to substantial income boosts.
-- **For Entry-Level Candidates**: Surprisingly, small companies appear to offer the highest average salary for entry-level positions among all company sizes shown for EN roles. 
-—
-
-## Model Results and Summary
-
-The final model was a Random Forest Regressor trained after extensive preprocessing and feature engineering. A log transformation was applied to the salary target variable to improve prediction stability.
-- **Mean Absolute Error (MAE)**: ~45,800.06 USD
--**Mean Squared Error (MSE)**: ~3.56 billion
--**R² Score**: ~0.24
-While the model doesn’t explain all salary variation, it successfully captures several key patterns. Further improvements could be achieved by incorporating more granular features such as education level, company reputation, or specific job functions.
-
-![sample of grid search code](grid_search.png)
-
-![Model's results](models_result.png)
 ---
 
 ## Data Preprocessing Steps
-- **For descriptive analysis and visualizations**
-- Converted string types columns like experience_level, employment_type, and job_title
-- Dropped unnecessary columns (`salary`, `salary_currency`)
-- Converted string types
-- Filtered rows for USD only
-- Removed duplicates and outliers
 
-- **For the Random Forest Regressor**
-- Engineered features: `is_fully_remote`, `is_domestic`
-- One-hot encoded `experience_level`, `employment_type`, `company_size`, `employee_residence`, `company_location`
-- Frequency encoded `job_title`
-- Applied log transformation to `salary_in_usd`
+The raw dataset underwent comprehensive preprocessing to ensure data quality, consistency, and suitability for both exploratory data analysis and machine learning model training. These steps were divided based on the analytical objective:
+
+#### 1. Preprocessing for General Descriptive Analysis (EDA)
+
+For initial data exploration and understanding market trends, the following transformations were applied:
+
+* **Initial Data Loading & Renaming:**
+    * Data was loaded with specified initial data types (e.g., `string` for text fields).
+    * Columns with less convenient names (e.g., "Area (Sqft)", "Days on Market") were renamed to a consistent snake_case format (e.g., `Area_sqft`, `Days_on_market`).
+* **Data Cleaning & Feature Extraction:**
+    * **Price:** Cleaned from currency symbols (`$`, `,`) and converted to a numerical `price_in_usd` (float).
+    * **Bedrooms & Bathrooms:** Numerical values extracted from string formats (e.g., "3 beds" to `3` for `num_of_bed`, "2.5 baths" to `2.5` for `num_of_bath`). Note: `num_of_bath` was converted to `int` here, which might truncate half-baths; a `float` conversion is often preferred for more precise numerical analysis.
+    * **Area & Lot Size:** Numerical values extracted from string formats (e.g., "1500 sqft" to `1500.0` for `area_sqft`, `lot_size_sqft`).
+    * **Street Address:** The primary street name was extracted from the full `Address` string. (Optional)
+* **Data Integrity Fix (Crucial for Location Data):**
+    * A significant inconsistency was addressed where `City` and `State` values did not accurately align (all cities are in California, but other states were present). The `State` column was corrected by mapping each `City` to its true state, which is 'CA' for all cities in this dataset (Fresno, Los Angeles, Sacramento, San Diego, San Francisco). This ensures accurate geographical representation for analysis.
+* **Initial Column Dropping:** Original, raw columns like `Price`, `Bedrooms`, `Bathrooms`, `Area (Sqft)`, and `Lot Size` were dropped after their numerical/cleaned versions were created.
+
+#### 2. Data Preprocessing for Binary Classification Models
+
+Building upon the general cleaning, additional steps were performed to prepare the data specifically for training machine learning models to predict `is_sold` status:
+
+* **Categorical Type Assignment:**
+    * Columns like `City`, `State`, `Property_type`, `Listing_agent`, and `Status` were explicitly set as `category` data types to optimize memory and prepare for encoding.
+* **Target Variable Creation:**
+    * A binary target variable, `is_sold`, was created from the `Status` column, where 'Sold' maps to `1` and 'For Sale' (or other statuses) maps to `0`.
+* **Feature Engineering (ML-Specific):**
+    * `log_price`: The `price_in_usd` column was log-transformed (`np.log1p`) to potentially normalize its distribution and improve model performance. (Other derived features like `Price_per_sqft`, `Bed_Bath_Ratio` from earlier discussions might be included here if they were part of the final ML dataset preparation).
+* **Extensive Column Dropping (Feature Selection):**
+    * Numerous columns deemed irrelevant or redundant for model training were removed, including unique identifiers (`MLS_ID`, `Listing_URL`), sensitive or high-cardinality text fields (`Address`, `Street`, `Listing_agent`), and `Zipcode`.
+    * The `State` column was dropped as it became a constant value ('CA') after the integrity fix, offering no predictive power.
+    * The original `Status` column was dropped after `is_sold` was derived.
+    * `price_in_usd` was dropped since its log-transformed version (`log_price`) was used as a feature.
+* **Categorical Feature Encoding:**
+    * **One-Hot Encoding (OHE):** Categorical features such as `City` and `Property_type` were transformed using One-Hot Encoding (`drop='first'`) to convert them into a numerical format suitable for machine learning algorithms, while also mitigating multicollinearity.
+* **Column Reordering:**
+    * The final `is_sold` target column was moved to the very end of the DataFrame, a common practice for separating features (X) from the target (y) in ML workflows.
 
 ---
 
+<!-- 
 ## Visualizations
 - Remark: visualisations are based on data in the year of 2025
 1. Distribution of company size
@@ -90,6 +99,7 @@ While the model doesn’t explain all salary variation, it successfully captures
 ![Remote work & Salary plot](remote_work_salary.png)
 8. Salary Over Time by Experience Level
 ![Salary over time plot](salary_trends.png)
+
 ---
 
 ## Challenges Faced
