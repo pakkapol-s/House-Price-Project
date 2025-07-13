@@ -22,7 +22,7 @@ A core challenge encountered was addressing critical data integrity issues, spec
 - Sacramento is a more liquid market — homes sell more frequently but at slightly lower price points, its average price ($804k) is slightly lower than Fresno, LA, and San Diego.
 
 ### Property Size and Configuration
-- While condos have the lowest average total price (~$768K), they don’t offer the best value per square foot. Single-family homes have the highest price per sqft (~$472), showing they command premium space.
+- While condos have the lowest average total price, they don’t offer the best value per square foot. Single-family homes have the highest price per sqft, showing they command premium space.
 - Apartments in Fresno ($912K) and single-family homes in San Diego ($865K) rank among the most expensive. On the flip side, condos in Sacramento and San Francisco consistently appear in the lowest price brackets.
 - 2-bedroom homes have the highest median sale price (~$870K), even more than 4- or 6-bedroom properties. This suggests smaller, well-located or luxury properties are in high demand over sheer size.
 
