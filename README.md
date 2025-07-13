@@ -53,39 +53,33 @@ The raw dataset underwent comprehensive preprocessing to ensure data quality, co
 
 #### 1. Preprocessing for General Descriptive Analysis (EDA)
 
-For initial data exploration and understanding market trends, the following transformations were applied:
+The goal here was to clean and transform raw property listing data for EDA and insight generation, the following transformations were applied:
 
-* **Initial Data Loading & Renaming:**
-    * Data was loaded with specified initial data types (e.g., `string` for text fields).
-    * Columns with less convenient names (e.g., "Area (Sqft)", "Days on Market") were renamed to a consistent snake_case format (e.g., `Area_sqft`, `Days_on_market`).
-* **Data Cleaning & Feature Extraction:**
-    * **Price:** Cleaned from currency symbols (`$`, `,`) and converted to a numerical `price_in_usd` (float).
-    * **Bedrooms & Bathrooms:** Numerical values extracted from string formats (e.g., "3 beds" to `3` for `num_of_bed`, "2.5 baths" to `2.5` for `num_of_bath`). Note: `num_of_bath` was converted to `int` here, which might truncate half-baths; a `float` conversion is often preferred for more precise numerical analysis.
-    * **Area & Lot Size:** Numerical values extracted from string formats (e.g., "1500 sqft" to `1500.0` for `area_sqft`, `lot_size_sqft`).
-    * **Street Address:** The primary street name was extracted from the full `Address` string. (Optional)
-* **Data Integrity Fix (Crucial for Location Data):**
-    * A significant inconsistency was addressed where `City` and `State` values did not accurately align (all cities are in California, but other states were present). The `State` column was corrected by mapping each `City` to its true state, which is 'CA' for all cities in this dataset (Fresno, Los Angeles, Sacramento, San Diego, San Francisco). This ensures accurate geographical representation for analysis.
-* **Initial Column Dropping:** Original, raw columns like `Price`, `Bedrooms`, `Bathrooms`, `Area (Sqft)`, and `Lot Size` were dropped after their numerical/cleaned versions were created.
+- Column Renaming: Long column names were standardized (e.g., "Area (Sqft)" → "area_sqft", "Lot Size" → "lot_size").
+- Data Type Conversion: Key fields like "City", "State", "Property Type" were explicitly cast as strings for clarity and consistency.
+- Numeric Extraction: Bedroom, bathroom, area, and lot size values were cleaned by stripping non-numeric characters (e.g., “3 Beds” → 3).
+- Currency Conversion: The "Price" column was stripped of $ and , symbols and converted to numeric values (float).
+- Address Breakdown: Extracted the street component from the full address for added granularity in location analysis.
+- Geographic Correction: Fixed mismatched city–state pairs (e.g., San Diego mistakenly tagged as TX instead of CA).
+- Dropped Redundant Columns: Removed unused original columns after transformation to keep the dataset lean and tidy.
 
 #### 2. Data Preprocessing for Binary Classification Models
 
 Building upon the general cleaning, additional steps were performed to prepare the data specifically for training machine learning models to predict `is_sold` status:
-
-* **Categorical Type Assignment:**
-    * Columns like `City`, `State`, `Property_type`, `Listing_agent`, and `Status` were explicitly set as `category` data types to optimize memory and prepare for encoding.
-* **Target Variable Creation:**
-    * A binary target variable, `is_sold`, was created from the `Status` column, where 'Sold' maps to `1` and 'For Sale' (or other statuses) maps to `0`.
-* **Feature Engineering (ML-Specific):**
-    * `log_price`: The `price_in_usd` column was log-transformed (`np.log1p`) to potentially normalize its distribution and improve model performance. (Other derived features like `Price_per_sqft`, `Bed_Bath_Ratio` from earlier discussions might be included here if they were part of the final ML dataset preparation).
-* **Extensive Column Dropping (Feature Selection):**
-    * Numerous columns deemed irrelevant or redundant for model training were removed, including unique identifiers (`MLS_ID`, `Listing_URL`), sensitive or high-cardinality text fields (`Address`, `Street`, `Listing_agent`), and `Zipcode`.
-    * The `State` column was dropped as it became a constant value ('CA') after the integrity fix, offering no predictive power.
-    * The original `Status` column was dropped after `is_sold` was derived.
-    * `price_in_usd` was dropped since its log-transformed version (`log_price`) was used as a feature.
-* **Categorical Feature Encoding:**
-    * **One-Hot Encoding (OHE):** Categorical features such as `City` and `Property_type` were transformed using One-Hot Encoding (`drop='first'`) to convert them into a numerical format suitable for machine learning algorithms, while also mitigating multicollinearity.
-* **Column Reordering:**
-    * The final `is_sold` target column was moved to the very end of the DataFrame, a common practice for separating features (X) from the target (y) in ML workflows.
+    
+* **Category Encoding**:
+    * City, Property_type, and Status converted to categorical data types.
+    * One-Hot Encoding (OHE) applied to selected categorical features, with drop='first' to avoid multicollinearity.
+* **Feature Engineering**:
+    * Created log_price using a log1p transformation for better numeric stability.
+    * Derived new binary target variable is_sold from the original "Status" field.
+* **Column Reduction**:
+    * Removed unnecessary columns for modeling (e.g., URLs, Agent Names, raw Price) to avoid data leakage and reduce noise.
+* **Data Cleaning**:
+    * Applied consistent formatting across numerical features.
+    * Handled geographic inconsistencies similarly to the EDA version.
+* **Column Reordering**:
+    * Reordered columns to ensure is_sold is at the end of the DataFrame, improving readability during training.
 
 ---
 
