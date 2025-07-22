@@ -83,7 +83,6 @@ Building upon the general cleaning, additional steps were performed to prepare t
 
 ---
 
-
 ## Visualizations
 - Remark: visualisations are based on data in the year of 2025
 1. Property Type Price Distributiuon
@@ -99,13 +98,51 @@ Building upon the general cleaning, additional steps were performed to prepare t
 6. Old vs New House Average Price Comparison
 ![Old vs New House Average Price Comparison Plot](Old_vs_New_House_Price_Comparison.png)
 7. City VS. Average Price
-![City VS. Average Price plot](City VS. Average Price Plot.png)
-8. Salary Over Time by Experience Level
-![Salary over time plot](salary_trends.png)
+![City VS. Average Price plot](City_VS._Average_Price_Plot.png)
+8. Underpriced properties in each city:
+![Underpriced properties in each city plot](underpriced_prop_in_each_cities.png)
+9. Correlation Heatmap For House Price
+![Correlation Heatmap For House Price](correlation_heatmap.png)
+10. Property Type Distribution Over the Years
+![Property Type Distribution Over the Years Plot](Property_distribution_over_the_years.png)
+11. House Price Trends by Property Type (1950–2023)
+![House Price Trends by Property Type (1950–2023) Plot](House_price_trend_plot.png)
 
 ---
-<!-- 
+
 ## Challenges Faced
+
+### 1. Data Integrity
+
+The dataset includes City and State columns. While there are 5 unique City values (Fresno, Los Angeles, Sacramento, San Diego, San Francisco) and 5 unique State values (CA, FL, IL, NY, TX), all the listed cities are geographically located within California (CA). For example, I've found instances where 'Los Angeles' is incorrectly listed with 'NY' as its state. This is a factual inconsistency that impacts the reliability of the data.
+
+In order to solve this problem, I reassigned State to 'CA' for all entries. Since all the City values in the dataset are definitively in California, I can programmatically reassign the State column to 'CA' for every row, overriding the incorrect state values. This ensures factual accuracy and consistency across the dataset.
+
+Sample of mismatched rows
+![mismatched rows]()
+
+### 2. Defining “Underpriced” Properties
+
+Since there is no universal definition of what makes a property “underpriced.” I needed to carefully design a logic that flags underpriced listings based on expected price predictions from the model rather than hardcoded rules — requiring thoughtful calibration.
+
+Solution: I did some research and concluded that I would identify underpriced properties based on price per square foot compared to the average for their property type.
+
+### 3. Designing Actionable Insights
+
+Without feedback or business goals, it can be difficult to decide what questions to answer or which analysis to prioritize. Creating meaningful insights required stepping into the role of a real estate analyst. 
+
+Solution: To simulate real-world needs, I stepped into the role of a real estate analyst and asked questions a property investor or buyer might care about, such as:
+
+Which cities have the most underpriced properties?
+Which property types tend to be undervalued?
+Are newly built homes priced differently than older ones?
+
+### 4. Limited Predictive Power (Low R-squared)
+
+Even after rigorous preprocessing and feature selection, the models (Linear Regression, Random Forest Regressor) yielded relatively low R-squared scores (e.g., R2 of ~0.23 for Random Forest). This indicates that the available features explain only a moderate portion of the variance in house prices, suggesting other significant uncaptured factors influence property values.
+
+Solution: While the R2 score highlights inherent data limitations, the focus remained on maximizing predictive performance given the available data. The project extensively documented the meticulous preprocessing and model tuning steps. The low R2 also serves as a crucial insight, suggesting that for higher accuracy, the model would likely require richer, more granular data (e.g., property age, specific amenities, school districts, recent sales data, neighborhood-level crime rates, etc.) not present in this dataset.
+
 - High cardinality in `job_title` required frequency encoding
 - Skewed salary distribution handled using log transformation
 - Outlier handling dropped ~2,900 rows
@@ -114,7 +151,7 @@ Building upon the general cleaning, additional steps were performed to prepare t
 ![Sample rows of some countries that contain only few rows](problem.png)
 
 ---
-
+<!-- 
 ## Technologies Used
 - Python, Pandas, NumPy
 - Scikit-learn
