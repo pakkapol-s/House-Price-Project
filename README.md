@@ -83,11 +83,11 @@ Building upon the general cleaning, additional steps were performed to prepare t
 
 ---
 
-<!-- 
+
 ## Visualizations
 - Remark: visualisations are based on data in the year of 2025
-1. Distribution of company size
-![Distribution of company size plot](company_dis.png)
+1. Property Type Price Distributiuon
+![Property Type Price Distributiuon plot](price_distribution.png)
 2. Salary distribution
 ![Salary distribution plot](salary_distribution.png)
 3. Salary by experience level
@@ -104,7 +104,7 @@ Building upon the general cleaning, additional steps were performed to prepare t
 ![Salary over time plot](salary_trends.png)
 
 ---
-
+<!-- 
 ## Challenges Faced
 - High cardinality in `job_title` required frequency encoding
 - Skewed salary distribution handled using log transformation
