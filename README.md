@@ -88,10 +88,10 @@ Building upon the general cleaning, additional steps were performed to prepare t
 - Remark: visualisations are based on data in the year of 2025
 1. Property Type Price Distributiuon
 ![Property Type Price Distributiuon plot](price_distribution.png)
-2. Salary distribution
-![Salary distribution plot](salary_distribution.png)
-3. Salary by experience level
-![Salary by experience level plot](salary_by_experience_level.png)
+2. Average Price per Sqft by Year Built
+![Average Price per Sqft by Year Built](Average Price per Sqft by Year Built.png)
+3. Price Distribution By Property Type
+![Price Distribution By Property Type plot](Price Distribution By Property Type.png) 
 4. Average Salary by country 
 ![Average Salary by country](average_salary_by_country.png)
 5. Heatmap: Salary VS Experience VS Company Size
