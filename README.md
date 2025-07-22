@@ -119,7 +119,7 @@ The dataset includes City and State columns. While there are 5 unique City value
 In order to solve this problem, I reassigned State to 'CA' for all entries. Since all the City values in the dataset are definitively in California, I can programmatically reassign the State column to 'CA' for every row, overriding the incorrect state values. This ensures factual accuracy and consistency across the dataset.
 
 Sample of mismatched rows
-![mismatched rows]()
+![mismatched rows](incorrect_state_map.png)
 
 ### 2. Defining “Underpriced” Properties
 
@@ -137,18 +137,11 @@ Which cities have the most underpriced properties?
 Which property types tend to be undervalued?
 Are newly built homes priced differently than older ones?
 
-### 4. Limited Predictive Power (Low R-squared)
+### 4. Model's poor performace
 
-Even after rigorous preprocessing and feature selection, the models (Linear Regression, Random Forest Regressor) yielded relatively low R-squared scores (e.g., R2 of ~0.23 for Random Forest). This indicates that the available features explain only a moderate portion of the variance in house prices, suggesting other significant uncaptured factors influence property values.
+Despite the efforts in feature engineering, hyperparameter tuning, and using a powerful model like Random Forest, the performance remains very poor for predicting whether a house will be sold. The low F1-score, low recall for the positive class, and AUC near 0.5 are consistent across your models.
 
-Solution: While the R2 score highlights inherent data limitations, the focus remained on maximizing predictive performance given the available data. The project extensively documented the meticulous preprocessing and model tuning steps. The low R2 also serves as a crucial insight, suggesting that for higher accuracy, the model would likely require richer, more granular data (e.g., property age, specific amenities, school districts, recent sales data, neighborhood-level crime rates, etc.) not present in this dataset.
-
-- High cardinality in `job_title` required frequency encoding
-- Skewed salary distribution handled using log transformation
-- Outlier handling dropped ~2,900 rows
-- Low R² score indicates the dataset has high variance not captured by current features
-- missing information in some countries like "CA" - contains only one row, "NL" - contains only 2 rows.
-![Sample rows of some countries that contain only few rows](problem.png)
+This strongly reinforces the idea that the current dataset, even with the engineered features, likely lacks sufficiently strong predictive signals to accurately determine if a house will be sold.
 
 ---
 <!-- 
