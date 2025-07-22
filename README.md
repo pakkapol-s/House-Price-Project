@@ -92,7 +92,7 @@ Building upon the general cleaning, additional steps were performed to prepare t
 3. Price Distribution By Property Type
 ![Price Distribution By Property Type plot](Property_Type_VS_Average_Price_(USD).png) 
 4. Property Type VS Average Price (USD)
-![Property Type VS Average Price (USD)](average_salary_by_country.png)
+![Property Type VS Average Price (USD) plot](Property_Type_VS_Average_Price_(USD).png)
 5. Average Price by The Number of Bedrooms
 ![Average Price by The Number of Bedrooms](Number_of_Bedrooms_vs._Average_Price_(USD).png)
 6. Old vs New House Average Price Comparison
@@ -144,12 +144,28 @@ Despite the efforts in feature engineering, hyperparameter tuning, and using a p
 This strongly reinforces the idea that the current dataset, even with the engineered features, likely lacks sufficiently strong predictive signals to accurately determine if a house will be sold.
 
 ---
-<!-- 
 ## Technologies Used
-- Python, Pandas, NumPy
-- Scikit-learn
-- Matplotlib, Seaborn
-- Jupyter / Kaggle Notebook -->
+
+- Programming Language: Python
+- Data Manipulation & Analysis: Pandas, NumPy
+- Data Visualization: Matplotlib, Seaborn
+- Statistical Modeling & Preprocessing: Statsmodels (for VIF), Scikit-learn (for preprocessing, model selection, various models, and evaluation metrics)
+- Machine Learning Models:
+    **Logistic Regression**
+    **Random Forest Classifier**
+    **Support Vector Classifier (SVC)**
+    **XGBoost Classifier**
+- Jupyter / Kaggle Notebook
+- Dashboard: Tableau
+
+---
+
+<!-- 
+## Dashboard: California Underpriced Property Insights
+1. Sample Dashboard
+![Property Type Price Distributiuon plot](price_distribution.png)
+2. Sample Dashboard with interactive elements
+ -->
 
 ---
 
