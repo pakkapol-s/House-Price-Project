@@ -89,17 +89,17 @@ Building upon the general cleaning, additional steps were performed to prepare t
 1. Property Type Price Distributiuon
 ![Property Type Price Distributiuon plot](price_distribution.png)
 2. Average Price per Sqft by Year Built
-![Average Price per Sqft by Year Built](Average Price per Sqft by Year Built.png)
+![Average Price per Sqft by Year Built](Average_Price_per_Sqft_by_Year_Built.png)
 3. Price Distribution By Property Type
-![Price Distribution By Property Type plot](Price Distribution By Property Type.png) 
-4. Average Salary by country 
-![Average Salary by country](average_salary_by_country.png)
-5. Heatmap: Salary VS Experience VS Company Size
-![Heatmap: Salary VS Experience VS Company Size](heatmap.png)
-6. Bar Plot of Top 10 Highest paid job titles
-![Top 10 highest job title](top_jobtitiles.png)
-7. Remote Work & Salary
-![Remote work & Salary plot](remote_work_salary.png)
+![Price Distribution By Property Type plot](Property_Type_VS_Average_Price_(USD).png) 
+4. Property Type VS Average Price (USD)
+![Property Type VS Average Price (USD)](average_salary_by_country.png)
+5. Average Price by The Number of Bedrooms
+![Average Price by The Number of Bedrooms](Number_of_Bedrooms_vs._Average_Price_(USD).png)
+6. Old vs New House Average Price Comparison
+![Old vs New House Average Price Comparison Plot](Old_vs_New_House_Price_Comparison.png)
+7. City VS. Average Price
+![City VS. Average Price plot](City VS. Average Price Plot.png)
 8. Salary Over Time by Experience Level
 ![Salary over time plot](salary_trends.png)
 
