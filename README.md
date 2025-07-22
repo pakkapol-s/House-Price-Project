@@ -90,7 +90,7 @@ Building upon the general cleaning, additional steps were performed to prepare t
 2. Average Price per Sqft by Year Built
 ![Average Price per Sqft by Year Built](Average_Price_per_Sqft_by_Year_Built.png)
 3. Price Distribution By Property Type
-![Price Distribution By Property Type plot](Property_Type_VS_Average_Price_(USD).png) 
+![Price Distribution By Property Type plot](Price_Distributiom_By_Property_Type.png) 
 4. Property Type VS Average Price (USD)
 ![Property Type VS Average Price (USD) plot](Property_Type_VS_Average_Price_(USD).png)
 5. Average Price by The Number of Bedrooms
