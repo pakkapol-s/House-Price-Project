@@ -1,14 +1,14 @@
 # "Built to Sell: ML for House Status
 
 ## Goal
-Through exploratory data analysis and machine learning (Logistic Regression, Random Forest, SVM, XGBoost), this project predicts house sale status. It delivers insights from key property features, benefiting real estate professionals and house seekers
+Through exploratory data analysis and machine learning (Logistic Regression, Random Forest, SVM, XGBoost), this project predicts property sale status. It delivers insights from key property features, benefiting real estate professionals and house seekers
 
 ---
 
 ## Background
 Understanding the dynamics of the residential real estate market is crucial for investors, agents, and prospective homeowners alike. Predicting whether a property will be sold, and what factors influence that outcome, can provide significant strategic advantages in a competitive market.
 
-This project utilizes a real-world dataset covering various USA house listings,specifially in California, detailing essential property features, listing specifics, and crucially, their eventual sale status. The primary objective is to leverage this data to build robust machine learning models capable of predicting property sales outcomes accurately.
+This project utilizes a real-world dataset covering various USA house listings, specifically in California, detailing essential property features, listing specifics, and crucially, their eventual sale status. The primary objective is to leverage this data to build robust machine learning models capable of predicting property sales outcomes accurately.
 
 A core challenge encountered was addressing critical data integrity issues, specifically geographic inconsistencies where listed cities did not always match their corresponding states. Extensive data preprocessing, meticulous feature engineering (such as deriving price ratios), and comprehensive model tuning were undertaken to overcome these obstacles and enhance the dataset's predictive signal.
 
@@ -80,6 +80,30 @@ Building upon the general cleaning, additional steps were performed to prepare t
     * Handled geographic inconsistencies similarly to the EDA version.
 * **Column Reordering**:
     * Reordered columns to ensure is_sold is at the end of the DataFrame, improving readability during training.
+
+---
+
+## Machine Learning Model Evaluation
+
+This project utilized several classification algorithms to predict the `is_sold` status of properties. Each model was fine-tuned using GridSearchCV and evaluated on a hold-out test set to assess its generalization capabilities.
+
+### Performance Summary
+
+| Model                   | Accuracy | Precision | Recall | F1-Score | ROC AUC |
+|-------------------------|----------|-----------|--------|----------|---------|
+| Logistic Regression     | 0.4958   | 0.3508    | 0.5169 | 0.4180   | 0.5026  |
+| Random Forest Classifier| 0.6024   | 0.3772    | 0.2077 | 0.2679   | 0.5135  |
+| Support Vector Machine  | 0.3486   | 0.3455    | 0.9614 | 0.5083   | 0.5210  |
+| XGBoost Classifier      | 0.59     | 0.34 (for class 1) | 0.17 (for class 1) | 0.23 (for class 1) | 0.49 (macro avg AUC) |
+
+**Key Findings & Discussion:**
+
+As noted in the "Challenges Faced" section, a significant observation was the **limited predictive power** of all models in classifying property sale status.
+* All models exhibited F1-Scores generally below 0.5 and ROC AUC scores only marginally better than random guessing (~0.50-0.52).
+* The SVM model achieved the highest F1-Score (0.5083), but its very high recall (0.9614) paired with low precision (0.3455) suggests it likely classified a large majority of instances into the positive class, indicating a potential imbalance or difficulty in distinguishing true positives.
+* Random Forest and XGBoost, while often powerful, also struggled, particularly with the positive class (F1-scores around 0.23-0.27), indicating a low ability to correctly identify properties that were actually sold.
+
+These results strongly suggest that the current dataset, even after extensive preprocessing and feature engineering, may lack sufficiently strong or diverse signals to accurately predict the binary `is_sold` outcome. Further improvements would likely necessitate additional, more granular data sources (e.g., market sentiment indicators, interest rates, property age, detailed neighborhood demographics, agent marketing efforts, etc.) to capture the complex dynamics of property sales.
 
 ---
 
