@@ -144,6 +144,7 @@ Despite the efforts in feature engineering, hyperparameter tuning, and using a p
 This strongly reinforces the idea that the current dataset, even with the engineered features, likely lacks sufficiently strong predictive signals to accurately determine if a house will be sold.
 
 ---
+
 ## Technologies Used
 
 - Programming Language: Python
@@ -160,12 +161,26 @@ This strongly reinforces the idea that the current dataset, even with the engine
 
 ---
 
-<!-- 
 ## Dashboard: California Underpriced Property Insights
-1. Sample Dashboard
-![Property Type Price Distributiuon plot](price_distribution.png)
+
+To provide interactive insights into the California housing market, a Tableau Public dashboard was developed, focusing on identifying and analyzing underpriced properties across five key California cities: Fresno, Los Angeles, Sacramento, San Diego, and San Francisco.
+
+The dashboard features the following interactive components:
+
+1. Key Performance Indicators (KPIs) per City: A detailed table presents essential metrics for each of the five cities. This includes the most common property type, the total number of properties, the count of identified underpriced properties, and the proportion of underpriced properties relative to the total. This allows for a quick comparative overview of value opportunities across different urban centers.
+
+2. Geographic Distribution Map: An intuitive map of California visually highlights the five analyzed cities. Users can interact with the map to filter data, making it easy to focus on specific regions of interest. The color intensity on the map can further indicate metrics like the number of underpriced properties in a city.
+
+3. Average Price Comparison Bar Plot: A side-by-side bar chart offers a clear visual comparison between the average listing price and the average price of underpriced properties within each city. This directly quantifies the potential savings or value found in the "underpriced" segment.
+
+4. Underpriced Property Type Heatmap: A detailed heatmap provides a granular view of the average price of underpriced properties, broken down by property type within each city. The color intensity of the cells reveals a higher number of underpriced properties, allowing users to identify specific property types that offer the most value in a given city. Hovering over the heatmap provides tooltips with detailed information like the underprice count, city name, property type, and average price of underpriced property.
+
+- Dashboard link: https://public.tableau.com/views/CaliforniaHousePrice_17528675775100/CalDash?:language=en-GB&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link
+
+1. Sample of the dashboard
+![Sample of the dashboard](dashboard_2.png)
 2. Sample Dashboard with interactive elements
- -->
+![Sample of the dashboard](dashboard_1.png)
 
 ---
 
