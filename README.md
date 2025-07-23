@@ -178,9 +178,9 @@ The dashboard features the following interactive components:
 - Dashboard link: https://public.tableau.com/views/CaliforniaHousePrice_17528675775100/CalDash?:language=en-GB&:sid=&:redirect=auth&:display_count=n&:origin=viz_share_link
 
 1. Sample of the dashboard
-![Sample of the dashboard](dashboard_2.png)
+![Sample of the dashboard](dash_2.png)
 2. Sample Dashboard with interactive elements
-![Sample of the dashboard](dashboard_1.png)
+![Sample of the dashboard](dash_1.png)
 
 ---
 
